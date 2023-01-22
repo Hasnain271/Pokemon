@@ -1,14 +1,17 @@
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 
 
 public class StartPanel {
     DrawAPanel startPanel;
+    FlowLayout fl = new FlowLayout();
     JButton play; 
 
     public StartPanel() {
-        startPanel = new DrawAPanel("/Users/hasnain/Desktop/Pokemon/assets/StartscreenBG.jpeg");
+        startPanel = new DrawAPanel("assets/StartscreenBG.jpeg");
         play = new JButton("Play!");
         playButton();
         startPanel.setVisible(true);
@@ -22,8 +25,9 @@ public class StartPanel {
 
 
     public void playButton() {
-
+        
         startPanel.add(play);
+
 
         play.addActionListener(new ActionListener() {
             @Override

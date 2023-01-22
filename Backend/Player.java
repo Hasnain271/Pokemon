@@ -66,6 +66,12 @@ public class Player {
         }
     }
 
+
+    public void attack() {
+        Multiplier e = new Multiplier();
+        
+    }
+
     public static void main(String[] args) throws DoNotHaveItemException, ItemDoesNotCorrespondException {
         Player x = new Player();
 
