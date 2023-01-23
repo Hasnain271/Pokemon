@@ -72,23 +72,6 @@ public class Player {
         
     }
 
-    public static void main(String[] args) throws DoNotHaveItemException, ItemDoesNotCorrespondException {
-        Player x = new Player();
-
-        for (Pokemon e : x.getTeam()) {
-            System.out.println(e.getName());
-            e.setStatus(new Status("Confused"));
-            System.out.println(e.getStatus().getName());
-        }
-
-        for (Pokemon e : x.getTeam()) {
-            System.out.println(e.getName());
-            x.useItem(e, new Item("Persim Berry", "Confused"));
-            System.out.println(e.getStatus().getName());
-        }
-
         
-
-    }
 
 }

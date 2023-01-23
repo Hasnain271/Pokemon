@@ -1,11 +1,11 @@
 
 
-public class PokemonsPanel extends BattlePanel {
+public class PokemonsPanel {
     Pokemon[] pokemons;
 
 
-    public PokemonsPanel(Player e) {
-        pokemons = e.getTeam();
+    public PokemonsPanel() {
+
 
     }
 

@@ -15,21 +15,24 @@ public class Bag {
 
     public void generateBag() {
 
-        generateRandomItems();
+        items = generateRandomItems();
         while (items.get(0).equals(items.get(1)) || items.get(0).equals(items.get(2)) || items.get(0).equals(items.get(3)) || items.get(1).equals(items.get(2)) || items.get(1).equals(items.get(3)) || items.get(2).equals(items.get(3))) {
-            generateRandomItems();
+            items = generateRandomItems();
         }
 
     }
 
 
-    private void generateRandomItems() {
+    private ArrayList<Item> generateRandomItems() {
         Item[] allItems = Item.generateItems();
         Random generator = new Random();
+        ArrayList<Item> t = new ArrayList<Item>();
 
         for (int i = 0; i < 4; i++) {
-            items.add(allItems[generator.nextInt(7)]);
+            t.add(allItems[generator.nextInt(7)]);
         }
+
+        return t;
     }
 
     public void removeItem(Item e) {

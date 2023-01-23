@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 
 public class Pokemon {
+    private int num;
     private String name;
     private String type;
     private int attack;
@@ -12,7 +13,8 @@ public class Pokemon {
     private Move[] move = new Move[4];
 
 
-    public Pokemon(String name, String type, int hp, int attack, int defense) {
+    public Pokemon(int num, String name, String type, int hp, int attack, int defense) {
+        this.num = num;
         this.name = name;
         this.type = type;
         this.attack = attack;
@@ -20,6 +22,9 @@ public class Pokemon {
         this.hp = hp;
     }
 
+    public int getNum() {
+        return num;
+    }
 
     public String getName() {
         return name;
@@ -64,7 +69,7 @@ public class Pokemon {
             while (input.hasNextLine()) {
                 String line = input.nextLine();
                 String[] lineSplit = line.split(",");
-                pokemons[i] = new Pokemon(lineSplit[1], lineSplit[2], Integer.valueOf(lineSplit[3]), Integer.valueOf(lineSplit[4]), Integer.valueOf(lineSplit[5]));
+                pokemons[i] = new Pokemon(Integer.valueOf(lineSplit[0]), lineSplit[1], lineSplit[2], Integer.valueOf(lineSplit[3]), Integer.valueOf(lineSplit[4]), Integer.valueOf(lineSplit[5]));
                 i++;
             }
             input.close();

@@ -1,28 +1,30 @@
 import javax.swing.JPanel;
-import javax.swing.text.AbstractDocument.Content;
 import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+import javax.swing.JLabel;
 
 
 public class BattlePanel {
     private JPanel battlePanel = new JPanel();
-    private Pokemon[] pokemon;
+    //private Pokemon[] pokemonsHuman;
+    //private Pokemon[] pokemonsAI;
+    //private JLabel pokemonHumanIMG = new JLabel();
+    //private JLabel pokemonAIIMG = new JLabel();
     private GridBagLayout gl = new GridBagLayout();
     private JButton attackButton = new JButton("Attack!");
     private JButton bagButton = new JButton("Bag!");
     private JButton runButton = new JButton("Run!");
     private JButton pokemonsButton = new JButton("Pokemon!");
-    private JButton backButton = new JButton("Back!");
     private GridBagConstraints constraints = new GridBagConstraints();
 
     public BattlePanel() {
         battlePanel.setLayout(gl);
 
-
+        //pokemonsHuman = human.getTeam();
 
 
 
@@ -47,10 +49,6 @@ public class BattlePanel {
         battlePanel.add(pokemonsButton);
         pokemonsButton();
 
-        getConstraints(4);
-        gl.setConstraints(backButton, constraints);
-        battlePanel.add(backButton);
-        backButton();
 
 
         battlePanel.setVisible(true);
@@ -63,9 +61,9 @@ public class BattlePanel {
         // constraints.weightx = 0;
         // constraints.weighty = 0;    
         constraints.gridx = num;
-        constraints.gridy = 5;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
+        constraints.gridy = 1;
+        // constraints.gridwidth = 1;
+        // constraints.gridheight = 1;
 
     }
 
@@ -81,6 +79,13 @@ public class BattlePanel {
 
     public void bagButton() {
         bagButton.setPreferredSize(new Dimension(192, 100));
+
+        bagButton.addActionListener(new ActionListener() {
+            @Override 
+            public void actionPerformed(ActionEvent e) {
+                GUI.cl.show(GUI.panels.getContentPane(), "Bag Panel");
+            }
+        });
     }
 
     public void runButton() {
@@ -91,10 +96,6 @@ public class BattlePanel {
                 GUI.cl.show(GUI.panels.getContentPane(), "Start Panel");
             }
         });
-    }
-
-    public void backButton() {
-        backButton.setPreferredSize(new Dimension(192, 100));
     }
 
 
