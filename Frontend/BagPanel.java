@@ -1,6 +1,9 @@
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class BagPanel {
     private JPanel bagPanel = new JPanel();
@@ -15,17 +18,14 @@ public class BagPanel {
     public BagPanel() {
 
         bagPanel.setLayout(gl);
-        // item1 = new JButton(GUI.human.getBag().getItems().get(0).getName());
-        // item2 = new JButton(GUI.human.getBag().getItems().get(1).getName());
-        // item3 = new JButton(GUI.human.getBag().getItems().get(2).getName());
-        // item4 = new JButton(GUI.human.getBag().getItems().get(3).getName());
-        backButton = new JButton("Back!");
 
-        // bagPanel.add(item1);
-        // bagPanel.add(item2);
-        // bagPanel.add(item3);
-        // bagPanel.add(item4);
-        bagPanel.add(backButton);
+
+        itemOne();
+        itemTwo();
+        itemThree();
+        itemFour();
+        backButton();
+        
 
         bagPanel.setVisible(true);
 
@@ -34,6 +34,44 @@ public class BagPanel {
 
     public JPanel getBagPanel() {
         return bagPanel;
+    }
+
+
+    public void backButton() {
+        backButton = new JButton("Back!");
+        backButton.setPreferredSize(new Dimension(190, 100));
+        bagPanel.add(backButton);
+        backButton.addActionListener(new ActionListener() {
+            @Override 
+            public void actionPerformed(ActionEvent e) {
+                GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+            }
+        });
+    }
+
+    public void itemOne() {
+        item1 = new JButton(GUI.human.getBag().getItems().get(0).getName());
+        item1.setPreferredSize(new Dimension(190, 100));
+        bagPanel.add(item1);
+
+    }
+
+    public void itemTwo() {
+        item2 = new JButton(GUI.human.getBag().getItems().get(1).getName());
+        item2.setPreferredSize(new Dimension(190, 100));
+        bagPanel.add(item2);
+    }
+
+    public void itemThree() {
+        item3 = new JButton(GUI.human.getBag().getItems().get(2).getName());
+        item3.setPreferredSize(new Dimension(190, 100));
+        bagPanel.add(item3);
+    }
+
+    public void itemFour() {
+        item4 = new JButton(GUI.human.getBag().getItems().get(3).getName());
+        item4.setPreferredSize(new Dimension(190, 100));
+        bagPanel.add(item4);
     }
 
 

@@ -13,6 +13,8 @@ public class GUI  {
         panels.add(new StartPanel().getStartPanel(), "Start Panel");
         panels.add(new BattlePanel().getBattlePanel(), "Battle Panel");
         panels.add(new BagPanel().getBagPanel(), "Bag Panel");
+        panels.add(new MovesPanel().getMovesPanel(), "Moves Panel");
+        panels.add(new ShowDamagePanel().getDamagePanel(), "Damage Panel");
         panels.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panels.setResizable(false);
         panels.setVisible(true);

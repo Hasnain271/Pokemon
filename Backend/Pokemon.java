@@ -1,5 +1,6 @@
 import java.io.File;
 import java.util.Scanner;
+import java.util.Random;
 
 
 public class Pokemon {
@@ -10,16 +11,17 @@ public class Pokemon {
     private int defense;
     private int hp;
     private Status status;
-    private Move[] move = new Move[4];
+    private Move[] moves = new Move[4];
 
 
-    public Pokemon(int num, String name, String type, int hp, int attack, int defense) {
+    public Pokemon(int num, String name, String type, int hp, int attack, int defense, Move[] moves) {
         this.num = num;
         this.name = name;
         this.type = type;
         this.attack = attack;
         this.defense = defense;
         this.hp = hp;
+        this.moves = moves;
     }
 
     public int getNum() {
@@ -45,6 +47,10 @@ public class Pokemon {
     public int getHp() {
         return hp;
     }
+
+    public Move[] getMoves() {
+        return moves;
+    }
     
     public void setHp(int hp) {
         this.hp = hp;
@@ -69,7 +75,7 @@ public class Pokemon {
             while (input.hasNextLine()) {
                 String line = input.nextLine();
                 String[] lineSplit = line.split(",");
-                pokemons[i] = new Pokemon(Integer.valueOf(lineSplit[0]), lineSplit[1], lineSplit[2], Integer.valueOf(lineSplit[3]), Integer.valueOf(lineSplit[4]), Integer.valueOf(lineSplit[5]));
+                pokemons[i] = new Pokemon(Integer.valueOf(lineSplit[0]), lineSplit[1], lineSplit[2], Integer.valueOf(lineSplit[3]), Integer.valueOf(lineSplit[4]), Integer.valueOf(lineSplit[5]), generatePokemonMoves());
                 i++;
             }
             input.close();
@@ -77,8 +83,26 @@ public class Pokemon {
             System.out.println(e);
         }
 
-
         return pokemons;
+    }
+
+    public static Move[] generatePokemonMoves() {
+        Move[] t = Move.generateMoves();
+        Random generator = new Random();
+        Move[] x = new Move[4];
+
+        for (int i = 0; i < 4; i++) {
+            x[i] = t[generator.nextInt(162)];
+        }
+
+        while (x[0].equals(x[1]) || x[0].equals(x[2]) || x[0].equals(x[3]) || x[1].equals(x[2]) || x[1].equals(x[3]) || x[2].equals(x[3])) {
+            for (int i = 0; i < 4; i++) {
+                x[i] = t[generator.nextInt(162)];
+            }
+        }
+
+        return x;
+
     }
 
     public boolean equals(Pokemon e) {

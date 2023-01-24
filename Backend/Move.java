@@ -58,6 +58,13 @@ public class Move {
         return index;
     }
 
+    public boolean equals(Move e) {
+        if (this.name.equals(e.name)) {
+            return true;
+        }
+        return false;
+    }
+
 
     public static void main(String[] args) {
         Move[] x = Move.generateMoves();
