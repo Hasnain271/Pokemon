@@ -3,6 +3,7 @@ import javax.swing.JButton;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 
 
@@ -13,7 +14,8 @@ public class PokemonsPanel {
     private JButton pokemonTwo;
     private JButton pokemonThree;
     private JButton back = new JButton("Back!");
-    private int[] x = getNonPlayingPokemon();
+    private int[] x = getNonPlayingPokemon(BattlePanel.pokemonsHuman, BattlePanel.getAttackPokemon());
+    static int[] p = getNonPlayingPokemon(BattlePanel.pokemonsAI, BattlePanel.getDefensePokemon());
 
 
 
@@ -33,6 +35,8 @@ public class PokemonsPanel {
         return pokemonPanel;
     }
 
+
+
     public void pokemonOneButton() {
         pokemonOne = new JButton(BattlePanel.pokemonsHuman[x[0]].getName());
         pokemonPanel.add(pokemonOne);
@@ -41,13 +45,17 @@ public class PokemonsPanel {
         pokemonOne.addActionListener(new ActionListener() {
             @Override 
             public void actionPerformed(ActionEvent e) {
-                int z[] = getNonPlayingPokemon();
+                int[] z = Arrays.copyOf(x, x.length);
+                x[0] = BattlePanel.indexOfPokemon;
                 pokemonOne.setText(BattlePanel.getAttackPokemon().getName());
                 BattlePanel.indexOfPokemon = z[0];
                 MovesPanel.setAllMoves();
                 BattlePanel.setHumanPokemon();
-
+                BattlePanel.setHumanHealth();
+                GUI.end();
                 GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+                GUI.robot.playTurn();
+                GUI.end();
             }
         });
     }
@@ -60,13 +68,17 @@ public class PokemonsPanel {
         pokemonTwo.addActionListener(new ActionListener() {
             @Override 
             public void actionPerformed(ActionEvent e) {
-                int z[] = getNonPlayingPokemon();
+                int[] z = Arrays.copyOf(x, x.length);
+                x[1] = BattlePanel.indexOfPokemon;
                 pokemonTwo.setText(BattlePanel.getAttackPokemon().getName());
                 BattlePanel.indexOfPokemon = z[1];
                 MovesPanel.setAllMoves();
                 BattlePanel.setHumanPokemon();
-
+                BattlePanel.setHumanHealth();
+                GUI.end();
                 GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+                GUI.robot.playTurn();
+                GUI.end();
             }
         });
     }
@@ -79,14 +91,17 @@ public class PokemonsPanel {
         pokemonThree.addActionListener(new ActionListener() {
             @Override 
             public void actionPerformed(ActionEvent e) {
-                int z[] = getNonPlayingPokemon();
+                int[] z = Arrays.copyOf(x, x.length);
+                x[2] = BattlePanel.indexOfPokemon;
                 pokemonThree.setText(BattlePanel.getAttackPokemon().getName());
                 BattlePanel.indexOfPokemon = z[2];
                 MovesPanel.setAllMoves();
                 BattlePanel.setHumanPokemon();
-
-
+                BattlePanel.setHumanHealth();
+                GUI.end();
                 GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+                GUI.robot.playTurn();
+                GUI.end();
             }
         });
     }
@@ -104,31 +119,21 @@ public class PokemonsPanel {
     }
 
 
-    public int[] getNonPlayingPokemon() {
+    public static int[] getNonPlayingPokemon(Pokemon[] p, Pokemon o) {
         int[] t = new int[3];
         int i = 0;
         int l = 0;
-        for (Pokemon x : BattlePanel.pokemonsHuman) {
-            if (!x.equals(BattlePanel.getAttackPokemon())) {
+        for (Pokemon x : p) {
+            if (!x.equals(o)) {
                 t[i] = l;
                 i++;
                 l++;
-            } else if (x.equals(BattlePanel.getAttackPokemon())) {
+            } else if (x.equals(o)) {
                 l++;
             }
         }
 
         return t;
-    }
-
-
-    public static void main(String[] args) {
-        PokemonsPanel x = new PokemonsPanel();
-        int[] t = x.getNonPlayingPokemon();
-
-        for (int z : t) {
-            System.out.println(String.valueOf(z));
-        }
     }
 
 

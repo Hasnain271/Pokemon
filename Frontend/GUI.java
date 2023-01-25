@@ -20,8 +20,29 @@ public class GUI  {
         panels.setResizable(false);
         panels.setVisible(true);
         
+    }
 
+    public static void end() {
+        boolean flag = true;
+        for (Pokemon t : BattlePanel.pokemonsHuman) {
+            if (!t.isFeinted() && !t.hasStatus()) {
+                flag = false;
+            }
+        }
 
+        if (flag) {
+            System.exit(0);
+        }
+
+        for (Pokemon t : BattlePanel.pokemonsAI) {
+            if (!t.isFeinted() && !t.hasStatus()) {
+                flag = false;
+            }
+        }
+
+        if (flag) {
+            System.exit(0);
+        }
     }
 
 

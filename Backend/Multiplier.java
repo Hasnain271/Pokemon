@@ -1,14 +1,19 @@
 import java.util.Scanner;
 import java.io.File;
+import java.net.SocketTimeoutException;
 import java.util.HashMap;
 
 public class Multiplier {
-    double[][] multipliers = new double[18][18];
+    double[][] multipliers = new double[18][18]; // All the multipliers in a 2D array, rows representing attackers and columns representing defenders
 
     public Multiplier() {
         generateMultiplier();
     }
 
+
+    /**
+     * Generate the 2D array of multipliers
+     */
     public void generateMultiplier() {
 
         try {
@@ -35,11 +40,26 @@ public class Multiplier {
     }
 
 
+    
+    /** 
+     * Takes the attack and defense pokemon and plugs into a helper method to get index of the multplier in the 2D array
+     * @param attack
+     * @param defense
+     * @return double
+     */
     public double getMultiplier(Pokemon attack, Pokemon defense) {
         int[] x = convertTypeToIndex(attack, defense);
         return multipliers[x[1]][x[0]];
     }
 
+    
+    /**
+     * Uses a hashmap to list the type and the index the type is on then finds the type which is the key and the index assigned to it which is the value then returns an 
+     * array of ints to represent the row and column indexes
+     * @param attack
+     * @param defense
+     * @return int[]
+     */
     private int[] convertTypeToIndex(Pokemon attack, Pokemon defense) {
         HashMap<String, Integer> TypeIndex = new HashMap<String, Integer>() {{
             put("Normal", 0);
@@ -64,17 +84,21 @@ public class Multiplier {
 
         int[] x = new int[2];
 
-        x[1] = TypeIndex.get(defense.getType());
-        x[0] = TypeIndex.get(attack.getType());
+        x[1] = TypeIndex.get(attack.getType());
+        x[0] = TypeIndex.get(defense.getType());
 
         return x;
         
     }
 
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         Multiplier t = new Multiplier();
         Pokemon[] x = Pokemon.generatePokemons();
-        t.getMultiplier(x[3], x[0]);
+        System.out.println(x[3].getType() + x[0].getType());
         System.out.println(t.getMultiplier(x[3], x[0]));
     }
     

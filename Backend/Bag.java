@@ -9,10 +9,19 @@ public class Bag {
         generateBag();
     }
 
+    
+    /** 
+     * Get all the items in the bag
+     * @return ArrayList<Item>
+     */
     public ArrayList<Item> getItems() {
         return items;
     }
 
+
+    /**
+     * Generate the bag, with each of the four items in the bag being unique
+     */
     public void generateBag() {
 
         items = generateRandomItems();
@@ -23,6 +32,12 @@ public class Bag {
     }
 
 
+    
+    /** 
+     * Generate random items for the bag. 
+     * It is a helper method to help create 4 unique items in each bag.
+     * @return ArrayList<Item>
+     */
     private ArrayList<Item> generateRandomItems() {
         Item[] allItems = Item.generateItems();
         Random generator = new Random();
@@ -35,17 +50,30 @@ public class Bag {
         return t;
     }
 
+    
+    /** 
+     * Remove item from bag
+     * @param e
+     */
     public void removeItem(Item e) {
         items.remove(e);
     }
 
+    
+    /** 
+     * Replace an item with another item
+     * @param e
+     * @param itemName
+     */
+    public void replaceItem(Item e, String itemName) {
+        int index = 0;
 
-
-
-    public static void main(String[] args) {
-        Bag x = new Bag();
-        for (Item e : x.getItems()) {
-            System.out.println(e.getName());
+        for (int i = 0; i < 4; i++) {
+            if (e.equals(items.get(i))) {
+                index = i;
+            }
         }
+
+        items.add(index, new Item(itemName));
     }
 }

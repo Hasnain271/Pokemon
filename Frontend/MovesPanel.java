@@ -43,16 +43,18 @@ public class MovesPanel {
                 if (!BattlePanel.pokemonsHuman[BattlePanel.indexOfPokemon].hasStatus() && !BattlePanel.pokemonsHuman[BattlePanel.indexOfPokemon].isFeinted()) {
                     indexOfMove = 0;
                     ShowDamagePanel.damageString.setText("The damage you did was: " + ShowDamagePanel.getDamageValue());
-                    ShowDamagePanel.damageString.repaint();
+                    
                     GUI.human.attack(BattlePanel.getAttackPokemon(), BattlePanel.getDefensePokemon(), BattlePanel.getAttackPokemon().getMoves()[indexOfMove]);
-                    BattlePanel.humanStatus.setText("Status: " + BattlePanel.getDefensePokemon().getStatus().getName());
+                    BattlePanel.robotStatus.setText("Status: " + BattlePanel.getDefensePokemon().getStatus().getName());
                     BattlePanel.setRobotHealth();
-
+                    GUI.end();
                     GUI.cl.show(GUI.panels.getContentPane(), "Damage Panel");
                     Timer timer = new Timer();
                     timer.schedule(new TimerTask() {
                         public void run() {
                             GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+                            GUI.end();
+                            GUI.robot.playTurn();
                         }
                     }, 2000);
     
@@ -81,15 +83,18 @@ public class MovesPanel {
                 if (!BattlePanel.pokemonsHuman[BattlePanel.indexOfPokemon].hasStatus() && !BattlePanel.pokemonsHuman[BattlePanel.indexOfPokemon].isFeinted()) {
                     indexOfMove = 1;
                     ShowDamagePanel.damageString.setText("The damage you did was: " + ShowDamagePanel.getDamageValue());
-                    ShowDamagePanel.damageString.repaint();
+                    
                     GUI.human.attack(BattlePanel.getAttackPokemon(), BattlePanel.getDefensePokemon(), BattlePanel.getAttackPokemon().getMoves()[indexOfMove]);
-                    BattlePanel.humanStatus.setText("Status: " + BattlePanel.getDefensePokemon().getStatus().getName());
+                    BattlePanel.robotStatus.setText("Status: " + BattlePanel.getDefensePokemon().getStatus().getName());
                     BattlePanel.setRobotHealth();
+                    GUI.end();
                     GUI.cl.show(GUI.panels.getContentPane(), "Damage Panel");
                     Timer timer = new Timer();
                     timer.schedule(new TimerTask() {
                         public void run() {
                             GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+                            GUI.robot.playTurn();
+                            GUI.end();
                         }
                     }, 2000);
     
@@ -110,16 +115,17 @@ public class MovesPanel {
                 if (!BattlePanel.pokemonsHuman[BattlePanel.indexOfPokemon].hasStatus() && !BattlePanel.pokemonsHuman[BattlePanel.indexOfPokemon].isFeinted()) {
                     indexOfMove = 2;
                     ShowDamagePanel.damageString.setText("The damage you did was: " + ShowDamagePanel.getDamageValue());
-                    ShowDamagePanel.damageString.repaint();
                     GUI.human.attack(BattlePanel.getAttackPokemon(), BattlePanel.getDefensePokemon(), BattlePanel.getAttackPokemon().getMoves()[indexOfMove]);
-                    BattlePanel.humanStatus.setText("Status: " + BattlePanel.getDefensePokemon().getStatus().getName());
+                    BattlePanel.robotStatus.setText("Status: " + BattlePanel.getDefensePokemon().getStatus().getName());
                     BattlePanel.setRobotHealth();
-
+                    GUI.end();
                     GUI.cl.show(GUI.panels.getContentPane(), "Damage Panel");
                     Timer timer = new Timer();
                     timer.schedule(new TimerTask() {
                         public void run() {
                             GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+                            GUI.robot.playTurn();
+                            GUI.end();
                         }
                     }, 2000);
     
@@ -139,16 +145,18 @@ public class MovesPanel {
                 if (!BattlePanel.pokemonsHuman[BattlePanel.indexOfPokemon].hasStatus() && !BattlePanel.pokemonsHuman[BattlePanel.indexOfPokemon].isFeinted()) {
                     indexOfMove = 3;
                     ShowDamagePanel.damageString.setText("The damage you did was: " + ShowDamagePanel.getDamageValue());
-                    ShowDamagePanel.damageString.repaint();
+                    
                     GUI.human.attack(BattlePanel.getAttackPokemon(), BattlePanel.getDefensePokemon(), BattlePanel.getAttackPokemon().getMoves()[indexOfMove]);
-                    BattlePanel.humanStatus.setText("Status: " + BattlePanel.getDefensePokemon().getStatus().getName());
+                    BattlePanel.robotStatus.setText("Status: " + BattlePanel.getDefensePokemon().getStatus().getName());
                     BattlePanel.setRobotHealth();
-
+                    GUI.end();
                     GUI.cl.show(GUI.panels.getContentPane(), "Damage Panel");
                     Timer timer = new Timer();
                     timer.schedule(new TimerTask() {
                         public void run() {
                             GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+                            GUI.robot.playTurn();
+                            GUI.end();
                         }
                     }, 2000);
     

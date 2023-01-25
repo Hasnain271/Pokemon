@@ -57,7 +57,15 @@ public class BagPanel {
         item1.addActionListener(new ActionListener() {
             @Override 
             public void actionPerformed(ActionEvent e) {
-                GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+                if (BattlePanel.getAttackPokemon().hasStatus()) {
+                    if (GUI.human.hasItemForStatus(BattlePanel.getAttackPokemon(), GUI.human.getBag().getItems().get(0))) {
+                        GUI.human.useItem(BattlePanel.getAttackPokemon(), GUI.human.getBag().getItems().get(0));
+                        GUI.end();
+                        GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+                        GUI.end();
+                    }
+                }
+
             }
         });
 
@@ -71,7 +79,17 @@ public class BagPanel {
         item2.addActionListener(new ActionListener() {
             @Override 
             public void actionPerformed(ActionEvent e) {
-                GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+                if (BattlePanel.getAttackPokemon().hasStatus()) {
+                    if (GUI.human.hasItemForStatus(BattlePanel.getAttackPokemon(), GUI.human.getBag().getItems().get(1))) {
+                        GUI.human.useItem(BattlePanel.getAttackPokemon(), GUI.human.getBag().getItems().get(1));
+                        GUI.end();
+                        GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+                        GUI.robot.playTurn();
+                        GUI.end();
+                    }
+                  
+                }
+
             }
         });
     }
@@ -84,10 +102,19 @@ public class BagPanel {
         item3.addActionListener(new ActionListener() {
             @Override 
             public void actionPerformed(ActionEvent e) {
-                GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+                if (BattlePanel.getAttackPokemon().hasStatus()) {
+                    if (GUI.human.hasItemForStatus(BattlePanel.getAttackPokemon(), GUI.human.getBag().getItems().get(2))) {
+                        GUI.human.useItem(BattlePanel.getAttackPokemon(), GUI.human.getBag().getItems().get(2));
+                        GUI.end();
+                        GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+                        GUI.robot.playTurn();
+                        GUI.end();
+                    }
+                }
             }
         });
     }
+
 
     public void itemFour() {
         item4 = new JButton(GUI.human.getBag().getItems().get(3).getName());
@@ -97,7 +124,16 @@ public class BagPanel {
         item4.addActionListener(new ActionListener() {
             @Override 
             public void actionPerformed(ActionEvent e) {
-                GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+                if (BattlePanel.getAttackPokemon().hasStatus()) {
+                    if (GUI.human.hasItemForStatus(BattlePanel.getAttackPokemon(), GUI.human.getBag().getItems().get(3))) {
+                        GUI.human.useItem(BattlePanel.getAttackPokemon(), GUI.human.getBag().getItems().get(3));
+                        GUI.end();
+                        GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+                        GUI.robot.playTurn();
+                        GUI.end();
+                        
+                    }
+                }
             }
         });
     }

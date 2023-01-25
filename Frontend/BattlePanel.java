@@ -154,7 +154,7 @@ public class BattlePanel {
         runButton.addActionListener(new ActionListener() {
             @Override 
             public void actionPerformed(ActionEvent e) {
-                GUI.cl.show(GUI.panels.getContentPane(), "Start Panel");
+                System.exit(0);
             }
         });
     }
@@ -210,11 +210,21 @@ public class BattlePanel {
     }
 
     public static void setHumanHealth() {
+        humanHealth.setMaximum(humanMaxHP[indexOfPokemon]);
+        humanHealth.setMinimum(0);
+        if (getAttackPokemon().getHp() < 1) {
+            getAttackPokemon().setHp(0);
+        }
         humanHealth.setValue(getAttackPokemon().getHp());
-        humanHealth.setString(String.valueOf(pokemonsHuman[indexOfPokemon].getHp()) + "/" + String.valueOf(humanMaxHP[indexOfPokemon]));
+        humanHealth.setString(String.valueOf(getAttackPokemon().getHp()) + "/" + String.valueOf(humanMaxHP[indexOfPokemon]));
     }
 
     public static void setRobotHealth() {
+        robotHealth.setMaximum(robotMaxHP[indexOfAIPokemon]);
+        robotHealth.setMinimum(0);
+        if (getDefensePokemon().getHp() < 1) {
+            getDefensePokemon().setHp(0);
+        }
         robotHealth.setValue(getDefensePokemon().getHp());
         robotHealth.setString(String.valueOf(pokemonsAI[indexOfAIPokemon].getHp()) + "/" + String.valueOf(robotMaxHP[indexOfAIPokemon]));
     }
@@ -228,6 +238,15 @@ public class BattlePanel {
         pokemonAILABEL.setIcon(robotPokemonICON);
         getImageConstraints(2);
         gl.setConstraints(pokemonAILABEL, constraints);
+    }
+
+
+    public static void setRobotPokemon() {
+        String pokeNum = String.valueOf(pokemonsHuman[indexOfPokemon].getNum());
+        ImageIcon robotPokemonICON = new ImageIcon("assets/front/" + pokeNum + ".png");
+        Image scaledImg = robotPokemonICON.getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+        robotPokemonICON = new ImageIcon(scaledImg);
+        pokemonAILABEL.setIcon(robotPokemonICON);
     }
 
     public void makeAIHealthBar() {
