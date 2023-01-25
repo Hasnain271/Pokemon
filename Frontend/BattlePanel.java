@@ -10,22 +10,32 @@ import javax.swing.ImageIcon;
 import java.awt.Image;
 import javax.swing.JProgressBar;
 import java.awt.Color;
+import java.awt.Graphics;
 
 
 public class BattlePanel {
-    private JPanel battlePanel = new JPanel();
+    private JPanel battlePanel = new JPanel() {
+        @Override
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.setColor(Color.WHITE);
+            g.fillRect(0, 0, 960, 573);
+        }
+    };
 
     static Pokemon[] pokemonsHuman = GUI.human.getTeam();
     static Pokemon[] pokemonsAI = GUI.robot.getTeam();
 
-    private JProgressBar humanHealth = new JProgressBar();
-    private JProgressBar robotHealth = new JProgressBar();
-    private int[] humanMaxHP = maxHumanHPS();
-    private int[] robotMaxHP = maxAIHPS();
+    static JProgressBar humanHealth = new JProgressBar();
+    static JProgressBar robotHealth = new JProgressBar();
+    private static int[] humanMaxHP = maxHumanHPS();
+    private static int[] robotMaxHP = maxAIHPS();
 
+    static JLabel humanStatus = new JLabel();
+    static JLabel robotStatus = new JLabel();
 
-    private JLabel pokemonHumanLABEL = new JLabel();
-    private JLabel pokemonAILABEL = new JLabel();
+    static JLabel pokemonHumanLABEL = new JLabel();
+    static JLabel pokemonAILABEL = new JLabel();
 
     static int indexOfPokemon = 0;
     static int indexOfAIPokemon = 0;
@@ -52,8 +62,12 @@ public class BattlePanel {
 
         makePlayerPokemon(indexOfPokemon);
         makeRobotPokemon(indexOfAIPokemon);
+
         makeHumanHealthBar();
         makeAIHealthBar();
+
+        makeHumanStatusLabel();
+        makeRobotStatusLabel();
 
 
         battlePanel.add(pokemonHumanLABEL);
@@ -76,18 +90,21 @@ public class BattlePanel {
     }
 
 
+
     public void getImageConstraints(int num) {
         constraints.gridx = num;
         constraints.gridy = 0;
-        constraints.gridheight = 1;
-        constraints.gridwidth = 1;
-        constraints.weightx = 1;
-        constraints.weighty = 1;
+
     }
 
     public void getHealthBarConstraints(int num) {
         constraints.gridx = num;
         constraints.gridy = 1;
+    }
+
+    public void getStatusConstraints(int num) {
+        constraints.gridx = num;
+        constraints.gridy = 0;
     }
 
 
@@ -148,6 +165,13 @@ public class BattlePanel {
         battlePanel.add(pokemonsButton);
         getButtonConstraints(2);
         gl.setConstraints(pokemonsButton, constraints);
+
+        pokemonsButton.addActionListener(new ActionListener() {
+            @Override 
+            public void actionPerformed(ActionEvent e) {
+                GUI.cl.show(GUI.panels.getContentPane(), "Pokemons Panel");
+            }
+        });
     }
 
 
@@ -158,10 +182,18 @@ public class BattlePanel {
         playerPokemonICON = new ImageIcon(scaledImg);
         pokemonHumanLABEL.setIcon(playerPokemonICON);
         getImageConstraints(0);
-        gl.setConstraints(pokemonHumanLABEL, constraints);
-
-        
+        gl.setConstraints(pokemonHumanLABEL, constraints); 
     }
+
+
+    public static void setHumanPokemon() {
+        String pokeNum = String.valueOf(pokemonsHuman[indexOfPokemon].getNum());
+        ImageIcon playerPokemonICON = new ImageIcon("assets/back/" + pokeNum + ".png");
+        Image scaledImg = playerPokemonICON.getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+        playerPokemonICON = new ImageIcon(scaledImg);
+        pokemonHumanLABEL.setIcon(playerPokemonICON);
+    }
+
 
     public void makeHumanHealthBar() {
         humanHealth.setMinimum(0);
@@ -176,6 +208,17 @@ public class BattlePanel {
         humanHealth.setPreferredSize(new Dimension(100, 50));
         
     }
+
+    public static void setHumanHealth() {
+        humanHealth.setValue(getAttackPokemon().getHp());
+        humanHealth.setString(String.valueOf(pokemonsHuman[indexOfPokemon].getHp()) + "/" + String.valueOf(humanMaxHP[indexOfPokemon]));
+    }
+
+    public static void setRobotHealth() {
+        robotHealth.setValue(getDefensePokemon().getHp());
+        robotHealth.setString(String.valueOf(pokemonsAI[indexOfAIPokemon].getHp()) + "/" + String.valueOf(robotMaxHP[indexOfAIPokemon]));
+    }
+
 
     public void makeRobotPokemon(int index) {
         String pokeNum = String.valueOf(pokemonsAI[index].getNum());
@@ -201,20 +244,39 @@ public class BattlePanel {
 
     }
 
-    public int[] maxAIHPS() {
+    public void makeHumanStatusLabel() {
+        battlePanel.add(humanStatus);
+        getStatusConstraints(1);
+        gl.setConstraints(humanStatus, constraints);
+        humanStatus.setPreferredSize(new Dimension(150, 70));
+        humanStatus.setText("Status: " +  getAttackPokemon().getStatus().getName());
+
+    }
+    
+    public void makeRobotStatusLabel() {
+        battlePanel.add(robotStatus);
+        getStatusConstraints(3);
+        gl.setConstraints(robotStatus, constraints);
+        robotStatus.setPreferredSize(new Dimension(150, 70));
+        robotStatus.setText("Status: " + getDefensePokemon().getStatus().getName());
+    }
+
+    public static int[] maxAIHPS() {
         int[] t = {pokemonsAI[0].getHp(), pokemonsAI[1].getHp(), pokemonsAI[2].getHp(), pokemonsAI[3].getHp()};
         return t;
     }
 
-    public int[] maxHumanHPS() {
+    public static int[] maxHumanHPS() {
         int[] t = {pokemonsHuman[0].getHp(), pokemonsHuman[1].getHp(), pokemonsHuman[2].getHp(), pokemonsHuman[3].getHp()};
         return t;
     }
 
-    public static void main(String[] args) {
-    
+    public static Pokemon getAttackPokemon() {
+        return pokemonsHuman[indexOfPokemon];
     }
 
-
+    public static Pokemon getDefensePokemon() {
+        return pokemonsAI[indexOfAIPokemon];
+    }
 
 }

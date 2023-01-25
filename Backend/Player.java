@@ -55,8 +55,44 @@ public class Player {
     public int totalDamage(Pokemon attack, Pokemon defense, Move m) {
         Multiplier e = new Multiplier();
         double damage = (2 * m.getPower() * ((attack.getAttack()/defense.getDefense())/50) + 2) * e.getMultiplier(attack, defense) * 5;
-        return (int) Math.round(damage);
+        int damageInt = (int) Math.round(damage);
+        return damageInt;
     }
+
+    public boolean doesMoveInflictStatus(Move e) {
+        Status[] t = Status.generateStatus();
+
+        for (Status x : t) {
+            if (e.equals(x.getMove())) {
+                return true;
+            }
+        }
+
+        return false;
+
+    } 
+
+
+    public void inflictStatus(Move e, Pokemon defense) {
+        Random generator = new Random();
+        Status[] t = Status.generateStatus();
+
+        for (Status x : t) {
+            int randomNum = generator.nextInt(4);
+            if (e.equals(x.getMove())) {
+                if (randomNum == 0) {
+                    defense.setStatus(x);
+                } else {
+                    break;
+                }
+            } else {
+                continue;
+            }
+        }
+
+    }
+
+
 
     public void useItem(Pokemon p, Item e) throws ItemDoesNotCorrespondException {
         if (e.equals(p.getStatus()) || e.getName().equals("Full Heal")) {
@@ -66,20 +102,25 @@ public class Player {
             throw new ItemDoesNotCorrespondException();
         }
     } 
-    
-    // (2 * attack.getPower() * (((Double.valueOf(Attacker.getAttacklvl())/Double.valueOf(Defender.getDefenselvl()))/50.0)) + 2) * multi.get(attack.getType()).get(Defender.getType()) * 5;
 
-
-    public void attack() {
-        
-        
+    public void attack(Pokemon attack, Pokemon defense, Move m) {
+        int damageInt = totalDamage(attack, defense, m);
+        defense.setHp(defense.getHp() - damageInt);
+        if (doesMoveInflictStatus(m)) {
+            inflictStatus(m, defense);
+        }
     }
+    
+    
 
     public static void main(String[] args) {
         Player p = new Player();
         Player t = new Player();
-
         System.out.println(String.valueOf(p.totalDamage(p.getTeam()[0], t.getTeam()[0], p.getTeam()[0].getMoves()[0])));
+        for (int i = 0; i < 4; i++) {
+            System.out.println(String.valueOf(p.totalDamage(p.getTeam()[i], t.getTeam()[i], p.getTeam()[i].getMoves()[i])));
+        }
+        
     }
 
 }

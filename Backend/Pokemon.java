@@ -14,7 +14,7 @@ public class Pokemon {
     private Move[] moves = new Move[4];
 
 
-    public Pokemon(int num, String name, String type, int hp, int attack, int defense, Move[] moves) {
+    public Pokemon(int num, String name, String type, int hp, int attack, int defense, Move[] moves, Status status) {
         this.num = num;
         this.name = name;
         this.type = type;
@@ -22,6 +22,7 @@ public class Pokemon {
         this.defense = defense;
         this.hp = hp;
         this.moves = moves;
+        this.status = status;
     }
 
     public int getNum() {
@@ -75,7 +76,7 @@ public class Pokemon {
             while (input.hasNextLine()) {
                 String line = input.nextLine();
                 String[] lineSplit = line.split(",");
-                pokemons[i] = new Pokemon(Integer.valueOf(lineSplit[0]), lineSplit[1], lineSplit[2], Integer.valueOf(lineSplit[3]), Integer.valueOf(lineSplit[4]), Integer.valueOf(lineSplit[5]), generatePokemonMoves());
+                pokemons[i] = new Pokemon(Integer.valueOf(lineSplit[0]), lineSplit[1], lineSplit[2], Integer.valueOf(lineSplit[3]), Integer.valueOf(lineSplit[4]), Integer.valueOf(lineSplit[5]), generatePokemonMoves(), new Status("None"));
                 i++;
             }
             input.close();
@@ -119,8 +120,11 @@ public class Pokemon {
         return false;
     }
 
-    public String toString() {
-        return this.name;
+    public boolean isFeinted() {
+        if (this.getHp() < 1) {
+            return true;
+        }
+        return false;
     }
 
 
@@ -129,7 +133,7 @@ public class Pokemon {
         Pokemon[] x = Pokemon.generatePokemons();
         
         for (Pokemon e : x) {
-            System.out.println(e.toString());
+            System.out.println(e.getName());
         }
     }
 

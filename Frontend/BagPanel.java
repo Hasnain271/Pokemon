@@ -54,24 +54,52 @@ public class BagPanel {
         item1.setPreferredSize(new Dimension(190, 100));
         bagPanel.add(item1);
 
+        item1.addActionListener(new ActionListener() {
+            @Override 
+            public void actionPerformed(ActionEvent e) {
+                GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+            }
+        });
+
     }
 
     public void itemTwo() {
         item2 = new JButton(GUI.human.getBag().getItems().get(1).getName());
         item2.setPreferredSize(new Dimension(190, 100));
         bagPanel.add(item2);
+
+        item2.addActionListener(new ActionListener() {
+            @Override 
+            public void actionPerformed(ActionEvent e) {
+                GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+            }
+        });
     }
 
     public void itemThree() {
         item3 = new JButton(GUI.human.getBag().getItems().get(2).getName());
         item3.setPreferredSize(new Dimension(190, 100));
         bagPanel.add(item3);
+
+        item3.addActionListener(new ActionListener() {
+            @Override 
+            public void actionPerformed(ActionEvent e) {
+                GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+            }
+        });
     }
 
     public void itemFour() {
         item4 = new JButton(GUI.human.getBag().getItems().get(3).getName());
         item4.setPreferredSize(new Dimension(190, 100));
         bagPanel.add(item4);
+
+        item4.addActionListener(new ActionListener() {
+            @Override 
+            public void actionPerformed(ActionEvent e) {
+                GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
+            }
+        });
     }
 
 

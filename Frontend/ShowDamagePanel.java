@@ -1,7 +1,7 @@
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.GridBagLayout;
 
 
 public class ShowDamagePanel {
@@ -10,9 +10,11 @@ public class ShowDamagePanel {
 
 
     public ShowDamagePanel() {
-
+        damagePanel.setLayout(new GridBagLayout());
         damagePanel.setBackground(Color.GRAY);
         damagePanel.add(damageString);
+        damagePanel.setVisible(true);
+    
 
  
 
@@ -23,7 +25,7 @@ public class ShowDamagePanel {
     }
 
     public static String getDamageValue() {
-        return String.valueOf(GUI.human.totalDamage(GUI.human.getTeam()[BattlePanel.indexOfPokemon], GUI.robot.getTeam()[BattlePanel.indexOfAIPokemon], GUI.human.getTeam()[BattlePanel.indexOfPokemon].getMoves()[MovesPanel.indexOfMove]));
+        return String.valueOf(GUI.human.totalDamage(BattlePanel.getAttackPokemon(), BattlePanel.getDefensePokemon(), BattlePanel.getAttackPokemon().getMoves()[MovesPanel.indexOfMove]));
     }
 
 }

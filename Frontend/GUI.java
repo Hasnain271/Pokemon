@@ -15,6 +15,7 @@ public class GUI  {
         panels.add(new BagPanel().getBagPanel(), "Bag Panel");
         panels.add(new MovesPanel().getMovesPanel(), "Moves Panel");
         panels.add(new ShowDamagePanel().getDamagePanel(), "Damage Panel");
+        panels.add(new PokemonsPanel().getPokemonsPanel(), "Pokemons Panel");
         panels.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panels.setResizable(false);
         panels.setVisible(true);
