@@ -156,7 +156,9 @@ public class Pokemon {
         for (int i = 0; i < 4; i++) {
             x[i] = t[generator.nextInt(162)];
         }
+        
 
+        // While loop ensures each move is unique for the pokemon
         while (x[0].equals(x[1]) || x[0].equals(x[2]) || x[0].equals(x[3]) || x[1].equals(x[2]) || x[1].equals(x[3]) || x[2].equals(x[3])) {
             for (int i = 0; i < 4; i++) {
                 x[i] = t[generator.nextInt(162)];

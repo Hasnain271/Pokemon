@@ -21,7 +21,7 @@ public class Multiplier {
             int t = 0;
             while (input.hasNextLine()) {
                 String line = input.nextLine();
-                if (line.startsWith("//")) {
+                if (line.startsWith("//")) { // Ignores lines starting with //, like a comment
                     continue;
                 }
                 String[] lineSplit = line.split(",");
@@ -82,6 +82,8 @@ public class Multiplier {
         }};
 
         int[] x = new int[2];
+
+        // 1 is the row (attack), and 0 is the column (defense)
 
         x[1] = TypeIndex.get(attack.getType());
         x[0] = TypeIndex.get(defense.getType());

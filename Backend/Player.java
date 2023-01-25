@@ -35,6 +35,7 @@ public class Player {
     public void generateTeam() {
 
         team = generateRandomPokemon();
+        // While loop ensures there are no duplicate pokemon
         while (team[0].equals(team[1]) || team[0].equals(team[2]) || team[0].equals(team[3]) || team[1].equals(team[2]) || team[1].equals(team[3]) || team[2].equals(team[3])) {
             team = generateRandomPokemon();
         }
@@ -50,7 +51,9 @@ public class Player {
         Pokemon[] pokemons = Pokemon.generatePokemons();
         Random generator = new Random();
         Pokemon[] t = new Pokemon[4];
+        
 
+        //Generates 4 random pokemons
         for (int i = 0; i < 4; i++) {
             t[i] = pokemons[generator.nextInt(151)];
         }
@@ -111,7 +114,7 @@ public class Player {
 
     
     /** 
-     * Deals a status although there is a 1/4 chance of the status being inflicted
+     * If move can inflict a status it has a 1/4 chance of doing it
      * @param e
      * @param defense
      */
@@ -122,7 +125,7 @@ public class Player {
         for (Status x : t) {
             int randomNum = generator.nextInt(4);
             if (e.equals(x.getMove())) {
-                if (randomNum == 0) {
+                if (randomNum == 0) { 
                     defense.setStatus(x);
                 } else {
                     break;
@@ -177,20 +180,5 @@ public class Player {
         }
     }
     
-    
-
-    
-    /** 
-     * @param args
-     */
-    public static void main(String[] args) {
-        Player p = new Player();
-        Player t = new Player();
-        //System.out.println(String.valueOf(p.totalDamage(p.getTeam()[0], t.getTeam()[0], p.getTeam()[0].getMoves()[0])));
-        for (int i = 0; i < 4; i++) {
-            System.out.println(String.valueOf(p.totalDamage(p.getTeam()[i], t.getTeam()[0], p.getTeam()[i].getMoves()[i])));
-        }
-        
-    }
 
 }

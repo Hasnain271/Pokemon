@@ -77,7 +77,7 @@ public class Move {
     public static int findMoveIndex(Move[] e, String name) {
         int index = 0;
         for (int i = 0; i < e.length; i++) {
-            if (name.equals(e[i].name)) {
+            if (name.equals(e[i].name)) { // Checks if the names match and then gets index
                 index = i;
             }
         }

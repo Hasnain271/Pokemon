@@ -41,6 +41,7 @@ public class Item {
         String[] allItemNames = {"Antidote", "Awakening", "Burn Heal", "Full Heal", "Ice Heal", "Paralyze Heal", "Persim Berry"};
         String[] allHealingProperties = {"Poisoned", "Sleeping", "Burning", "All", "Freezing", "Paralysed", "Confused"};
         Item[] x = new Item[7];
+        // Creates all items
         for (int i = 0; i < allItemNames.length; i++) {
             x[i] = new Item(allItemNames[i], allHealingProperties[i]);
         }

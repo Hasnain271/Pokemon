@@ -12,10 +12,10 @@ public class AI extends Player {
      * Let the computer play the turn
      */
     public void playTurn() {
-        if (BattlePanel.getDefensePokemon().isFeinted()) {
-            changePokemon();
-        } else if (BattlePanel.getDefensePokemon().hasStatus()) {
-            if (hasAnItemForStatus(BattlePanel.getDefensePokemon(), getBag().getItems())) {
+        if (BattlePanel.getDefensePokemon().isFeinted()) { // Checks if current pokemon fainted 
+            changePokemon(); 
+        } else if (BattlePanel.getDefensePokemon().hasStatus()) { // Checks if current pokemon has a status
+            if (hasAnItemForStatus(BattlePanel.getDefensePokemon(), getBag().getItems())) { // If the computer has an item to tucre the status
                 playItem();
             }
 

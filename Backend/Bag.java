@@ -25,6 +25,7 @@ public class Bag {
     public void generateBag() {
 
         items = generateRandomItems();
+        // While loops ensure there are no repeats to items
         while (items.get(0).equals(items.get(1)) || items.get(0).equals(items.get(2)) || items.get(0).equals(items.get(3)) || items.get(1).equals(items.get(2)) || items.get(1).equals(items.get(3)) || items.get(2).equals(items.get(3))) {
             items = generateRandomItems();
         }
