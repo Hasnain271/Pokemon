@@ -1,10 +1,10 @@
 import java.util.Random;
-import Exceptions.ItemDoesNotCorrespondException;
+
 
 public class Player {
 
-    protected Pokemon[] team = new Pokemon[4];
-    protected Bag bag;
+    protected Pokemon[] team = new Pokemon[4]; // Represents the four pokemon a player has
+    protected Bag bag; // Represents a bag of items a player has
 
     public Player() {
         bag = new Bag();
@@ -12,15 +12,26 @@ public class Player {
     }
 
 
+    
+    /** 
+     * Gets the team of pokemon
+     * @return Pokemon[]
+     */
     public Pokemon[] getTeam() {
         return team;
     }
 
+    
+    /** 
+     * Gets the bag
+     * @return Bag
+     */
     public Bag getBag() {
         return bag;
     }
 
 
+    // Generates a team of four unique pokemon
     public void generateTeam() {
 
         team = generateRandomPokemon();
@@ -30,6 +41,11 @@ public class Player {
     }
 
 
+    
+    /** 
+     * Private method to help generate a team for a player
+     * @return Pokemon[]
+     */
     private Pokemon[] generateRandomPokemon() {
         Pokemon[] pokemons = Pokemon.generatePokemons();
         Random generator = new Random();
@@ -42,6 +58,12 @@ public class Player {
         return t;
     }
 
+    
+    /** 
+     * Check if a player has an item in their bag
+     * @param e
+     * @return boolean
+     */
     public boolean hasItem(Item e) {
         for (Item z : bag.getItems()) {
             if (z.equals(e)) {
@@ -52,6 +74,14 @@ public class Player {
     }
 
 
+    
+    /** 
+     * Gets the total damage the pokemon does and rounds it then returns the int value
+     * @param attack
+     * @param defense
+     * @param m
+     * @return int
+     */
     public int totalDamage(Pokemon attack, Pokemon defense, Move m) {
         Multiplier e = new Multiplier();
         double damage = (2 * m.getPower() * ((attack.getAttack()/defense.getDefense())/50) + 2) * e.getMultiplier(attack, defense) * 5;
@@ -59,6 +89,12 @@ public class Player {
         return damageInt;
     }
 
+    
+    /** 
+     * Checks if a move inflcits a status
+     * @param e
+     * @return boolean
+     */
     public boolean doesMoveInflictStatus(Move e) {
         Status[] t = Status.generateStatus();
 
@@ -73,6 +109,12 @@ public class Player {
     } 
 
 
+    
+    /** 
+     * Deals a status although there is a 1/4 chance of the status being inflicted
+     * @param e
+     * @param defense
+     */
     public void inflictStatus(Move e, Pokemon defense) {
         Random generator = new Random();
         Status[] t = Status.generateStatus();
@@ -94,15 +136,39 @@ public class Player {
 
 
 
-    public void useItem(Pokemon p, Item e) throws ItemDoesNotCorrespondException {
-        if (e.equals(p.getStatus()) || e.getName().equals("Full Heal")) {
-            bag.removeItem(e);
-            p.setStatus(new Status("None"));
-        } else {
-            throw new ItemDoesNotCorrespondException();
-        }
-    } 
+    
+    /** 
+     * Use an item to cure status effect
+     * @param p
+     * @param e
+     */
+    public void useItem(Pokemon p, Item e) {
+        bag.replaceItem(e, "No Item");
+        p.setStatus(new Status("None"));
+    }
 
+    
+    /** 
+     * Checks if the player has the right item for the status the pokemon has
+     * @param p
+     * @param e
+     * @return boolean
+     */
+    public boolean hasItemForStatus(Pokemon p, Item e) {
+        if (e.equals(p.getStatus()) || e.getName().equals("Full Heal")) {
+            return true;
+        }
+        return false;
+    }
+
+
+    
+    /** 
+     * Deals damage and inflicts a status
+     * @param attack
+     * @param defense
+     * @param m
+     */
     public void attack(Pokemon attack, Pokemon defense, Move m) {
         int damageInt = totalDamage(attack, defense, m);
         defense.setHp(defense.getHp() - damageInt);
@@ -113,6 +179,10 @@ public class Player {
     
     
 
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         Player p = new Player();
         Player t = new Player();

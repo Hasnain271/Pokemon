@@ -2,9 +2,9 @@ import java.io.File;
 import java.util.Scanner;
 
 public class Move {
-    private String name;
-    private String type;
-    private int power;
+    private String name; // The name of the move
+    private String type; // The type of the move
+    private int power; // The power of the move
 
 
     public Move(String name, String type, int power) {
@@ -13,19 +13,39 @@ public class Move {
         this.power = power;
     }
 
+    
+    /** 
+     * Get the name of the move
+     * @return String
+     */
     public String getName() {
         return name;
     }
 
+    
+    /** 
+     * Get the type of the move
+     * @return String
+     */
     public String getType() {
         return type;
     }
 
+    
+    /** 
+     * Get the power of the move
+     * @return int
+     */
     public int getPower() {
         return power;
     }
 
 
+    
+    /** 
+     * Generates all moves read from the moves.csv file
+     * @return Move[]
+     */
     public static Move[] generateMoves() {
         Move[] x = new Move[165];
         int i = 0;
@@ -47,6 +67,13 @@ public class Move {
         return x;
     }
 
+    
+    /** 
+     * Find the index of a move using the name of the move
+     * @param e
+     * @param name
+     * @return int
+     */
     public static int findMoveIndex(Move[] e, String name) {
         int index = 0;
         for (int i = 0; i < e.length; i++) {
@@ -58,6 +85,12 @@ public class Move {
         return index;
     }
 
+    
+    /** 
+     * Checks if one moves name is equal to another moves naem
+     * @param e
+     * @return boolean
+     */
     public boolean equals(Move e) {
         if (this.name.equals(e.name)) {
             return true;
@@ -66,6 +99,10 @@ public class Move {
     }
 
 
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         Move[] x = Move.generateMoves();
 
