@@ -60,18 +60,4 @@ public class Status {
         return x;
     }
 
-
-    
-    /** 
-     * @param args
-     */
-    public static void main(String[] args) {
-        Status[] x = Status.generateStatus();
-        System.out.println(x.length);
-
-        for (Status t : x) {
-            System.out.println(t.getName());
-        }
-    }
-
 }

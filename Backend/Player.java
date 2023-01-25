@@ -84,7 +84,7 @@ public class Player {
      */
     public int totalDamage(Pokemon attack, Pokemon defense, Move m) {
         Multiplier e = new Multiplier();
-        double damage = (2 * m.getPower() * ((attack.getAttack()/defense.getDefense())/50) + 2) * e.getMultiplier(attack, defense) * 5;
+        double damage = (6 * m.getPower() * (attack.getAttack()/defense.getDefense())/50 + 2) * e.getMultiplier(attack, defense) * 5;
         int damageInt = (int) Math.round(damage);
         return damageInt;
     }
@@ -186,9 +186,9 @@ public class Player {
     public static void main(String[] args) {
         Player p = new Player();
         Player t = new Player();
-        System.out.println(String.valueOf(p.totalDamage(p.getTeam()[0], t.getTeam()[0], p.getTeam()[0].getMoves()[0])));
+        //System.out.println(String.valueOf(p.totalDamage(p.getTeam()[0], t.getTeam()[0], p.getTeam()[0].getMoves()[0])));
         for (int i = 0; i < 4; i++) {
-            System.out.println(String.valueOf(p.totalDamage(p.getTeam()[i], t.getTeam()[i], p.getTeam()[i].getMoves()[i])));
+            System.out.println(String.valueOf(p.totalDamage(p.getTeam()[i], t.getTeam()[0], p.getTeam()[i].getMoves()[i])));
         }
         
     }

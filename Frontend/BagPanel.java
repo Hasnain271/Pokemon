@@ -60,6 +60,7 @@ public class BagPanel {
                 if (BattlePanel.getAttackPokemon().hasStatus()) {
                     if (GUI.human.hasItemForStatus(BattlePanel.getAttackPokemon(), GUI.human.getBag().getItems().get(0))) {
                         GUI.human.useItem(BattlePanel.getAttackPokemon(), GUI.human.getBag().getItems().get(0));
+                        item1.setText(GUI.human.getBag().getItems().get(0).getName());
                         GUI.end();
                         GUI.cl.show(GUI.panels.getContentPane(), "Battle Panel");
                         GUI.end();

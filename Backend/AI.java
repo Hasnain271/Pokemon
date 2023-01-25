@@ -72,7 +72,7 @@ public class AI extends Player {
      * Get a random number between 0-3 
      * @return int
      */
-    public int getRandomMoveIndex() {
+    private int getRandomMoveIndex() {
         Random generator = new Random();
         return generator.nextInt(4);
     }

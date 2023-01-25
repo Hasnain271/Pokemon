@@ -1,10 +1,9 @@
 import java.util.Scanner;
 import java.io.File;
-import java.net.SocketTimeoutException;
 import java.util.HashMap;
 
 public class Multiplier {
-    double[][] multipliers = new double[18][18]; // All the multipliers in a 2D array, rows representing attackers and columns representing defenders
+    private double[][] multipliers = new double[18][18]; // All the multipliers in a 2D array, rows representing attackers and columns representing defenders
 
     public Multiplier() {
         generateMultiplier();
@@ -90,17 +89,5 @@ public class Multiplier {
         return x;
         
     }
-
-    
-    /** 
-     * @param args
-     */
-    public static void main(String[] args) {
-        Multiplier t = new Multiplier();
-        Pokemon[] x = Pokemon.generatePokemons();
-        System.out.println(x[3].getType() + x[0].getType());
-        System.out.println(t.getMultiplier(x[3], x[0]));
-    }
-    
 
 }

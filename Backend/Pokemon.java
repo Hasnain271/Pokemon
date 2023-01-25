@@ -148,7 +148,7 @@ public class Pokemon {
      * Each move is read from the moves.csv file.
      * @return Move[]
      */
-    public static Move[] generatePokemonMoves() {
+    private static Move[] generatePokemonMoves() {
         Move[] t = Move.generateMoves();
         Random generator = new Random();
         Move[] x = new Move[4];

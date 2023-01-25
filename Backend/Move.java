@@ -97,17 +97,4 @@ public class Move {
         }
         return false;
     }
-
-
-    
-    /** 
-     * @param args
-     */
-    public static void main(String[] args) {
-        Move[] x = Move.generateMoves();
-
-        for (Move e : x) {
-            System.out.println(e.getName());
-        }
-    }
 }

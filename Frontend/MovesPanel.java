@@ -32,6 +32,11 @@ public class MovesPanel {
         return moves;
     }
 
+    public String getDamageValue() {
+        System.out.println(String.valueOf(GUI.human.totalDamage(BattlePanel.getAttackPokemon(), BattlePanel.getDefensePokemon(), BattlePanel.getAttackPokemon().getMoves()[MovesPanel.indexOfMove])));
+        return String.valueOf(GUI.human.totalDamage(BattlePanel.getAttackPokemon(), BattlePanel.getDefensePokemon(), BattlePanel.getAttackPokemon().getMoves()[MovesPanel.indexOfMove]));
+    }
+
     public void moveOne() {
         moveOne = new JButton(GUI.human.getTeam()[BattlePanel.indexOfPokemon].getMoves()[0].getName());
         moveOne.setPreferredSize(new Dimension(190, 100));
@@ -42,8 +47,8 @@ public class MovesPanel {
             public void actionPerformed(ActionEvent e) {
                 if (!BattlePanel.pokemonsHuman[BattlePanel.indexOfPokemon].hasStatus() && !BattlePanel.pokemonsHuman[BattlePanel.indexOfPokemon].isFeinted()) {
                     indexOfMove = 0;
-                    ShowDamagePanel.damageString.setText("The damage you did was: " + ShowDamagePanel.getDamageValue());
-                    
+                    ShowDamagePanel.damageString.setText("The damage you did was: " + getDamageValue());
+                    ShowDamagePanel.damageString.repaint();
                     GUI.human.attack(BattlePanel.getAttackPokemon(), BattlePanel.getDefensePokemon(), BattlePanel.getAttackPokemon().getMoves()[indexOfMove]);
                     BattlePanel.robotStatus.setText("Status: " + BattlePanel.getDefensePokemon().getStatus().getName());
                     BattlePanel.setRobotHealth();
@@ -82,7 +87,7 @@ public class MovesPanel {
             public void actionPerformed(ActionEvent e) {
                 if (!BattlePanel.pokemonsHuman[BattlePanel.indexOfPokemon].hasStatus() && !BattlePanel.pokemonsHuman[BattlePanel.indexOfPokemon].isFeinted()) {
                     indexOfMove = 1;
-                    ShowDamagePanel.damageString.setText("The damage you did was: " + ShowDamagePanel.getDamageValue());
+                    ShowDamagePanel.damageString.setText("The damage you did was: " + getDamageValue());
                     
                     GUI.human.attack(BattlePanel.getAttackPokemon(), BattlePanel.getDefensePokemon(), BattlePanel.getAttackPokemon().getMoves()[indexOfMove]);
                     BattlePanel.robotStatus.setText("Status: " + BattlePanel.getDefensePokemon().getStatus().getName());
@@ -114,7 +119,7 @@ public class MovesPanel {
             public void actionPerformed(ActionEvent e) {
                 if (!BattlePanel.pokemonsHuman[BattlePanel.indexOfPokemon].hasStatus() && !BattlePanel.pokemonsHuman[BattlePanel.indexOfPokemon].isFeinted()) {
                     indexOfMove = 2;
-                    ShowDamagePanel.damageString.setText("The damage you did was: " + ShowDamagePanel.getDamageValue());
+                    ShowDamagePanel.damageString.setText("The damage you did was: " + getDamageValue());
                     GUI.human.attack(BattlePanel.getAttackPokemon(), BattlePanel.getDefensePokemon(), BattlePanel.getAttackPokemon().getMoves()[indexOfMove]);
                     BattlePanel.robotStatus.setText("Status: " + BattlePanel.getDefensePokemon().getStatus().getName());
                     BattlePanel.setRobotHealth();
@@ -144,7 +149,7 @@ public class MovesPanel {
             public void actionPerformed(ActionEvent e) {
                 if (!BattlePanel.pokemonsHuman[BattlePanel.indexOfPokemon].hasStatus() && !BattlePanel.pokemonsHuman[BattlePanel.indexOfPokemon].isFeinted()) {
                     indexOfMove = 3;
-                    ShowDamagePanel.damageString.setText("The damage you did was: " + ShowDamagePanel.getDamageValue());
+                    ShowDamagePanel.damageString.setText("The damage you did was: " + getDamageValue());
                     
                     GUI.human.attack(BattlePanel.getAttackPokemon(), BattlePanel.getDefensePokemon(), BattlePanel.getAttackPokemon().getMoves()[indexOfMove]);
                     BattlePanel.robotStatus.setText("Status: " + BattlePanel.getDefensePokemon().getStatus().getName());

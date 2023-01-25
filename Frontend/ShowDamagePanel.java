@@ -13,7 +13,7 @@ public class ShowDamagePanel {
         damagePanel.setLayout(new GridBagLayout());
         damagePanel.setBackground(Color.GRAY);
         damagePanel.add(damageString);
-        damagePanel.setVisible(true);
+        //damagePanel.setVisible(true);
     
 
  
@@ -24,8 +24,5 @@ public class ShowDamagePanel {
         return damagePanel;
     }
 
-    public static String getDamageValue() {
-        return String.valueOf(GUI.human.totalDamage(BattlePanel.getAttackPokemon(), BattlePanel.getDefensePokemon(), BattlePanel.getAttackPokemon().getMoves()[MovesPanel.indexOfMove]));
-    }
 
 }
